@@ -41,7 +41,7 @@ interface Player:Serializable
 
     open fun ShowBag() {
         var w = 1
-        for (y in bag) {//owo
+        for (y in bag) {
             if (y!!.Count == 0) {
                 bag.remove(y)
                 bag.add(Empty())
