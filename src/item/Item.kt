@@ -3,6 +3,16 @@ import player.Player
 import java.io.Serializable
 import java.lang.reflect.GenericArrayType
 
+fun <T>Message(P:Player,I:T)
+{
+    when(I)
+    {
+        is Heal->println("你使用了${I.Name}\n目前HP=${P.HP}\n目前MP=${P.MP}")
+        is Weapon->println("穿上了${I.Name}")
+    }
+}
+
+
 interface Item:Serializable
 {
     var Name:String
@@ -31,6 +41,7 @@ data class RedWater (override var Count: Int=0):Heal(50)
     {
         P.HP+=this.Value
         this.Count-=1
+        Message(P,this)
     }
     override fun GetInfo()
     {
@@ -44,6 +55,7 @@ data class BlueWater(override var Count: Int=0):Heal(50)
     {
         P.HP+=Value*2
         this.Count-=1
+        Message(P,this)
     }
 
     override fun GetInfo()
@@ -58,6 +70,7 @@ data class WoodSword(override var Count: Int=0) :Weapon(30,0)
     {
         P.hand=this
         this.Count-=1
+        Message(P,this)
     }
     override fun GetInfo()
     {
