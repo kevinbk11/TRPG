@@ -16,7 +16,7 @@ fun ItemDisplay(P:Player)
     try
     {
         var ItemNumber=input.nextInt()-1
-        P.bag[ItemNumber]
+        if(P.bag[ItemNumber]!!.Name==Empty().Name)throw Exception()
         println("請輸入接下來的操作,1為使用,2為顯示道具詳細,3為丟棄")
         when(input.nextInt())
         {
