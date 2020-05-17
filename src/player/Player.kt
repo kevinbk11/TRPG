@@ -28,6 +28,7 @@ interface Player:Serializable
     open var name:String
     open var job:String
     open var HP:Int
+    open var MP:Int
     open var hand:Item?
     open var LV:Int
     open var bag:LinkedList<Item?>
