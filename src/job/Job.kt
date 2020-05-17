@@ -1,7 +1,7 @@
 package job
-
-import item.Empty
-import item.Item
+import MainSystem.*
+import item.normalItem.Empty
+import item.normalItem.Item
 import map.MAP
 import map.MAP_1
 import player.Player
@@ -18,6 +18,7 @@ class magic(var n:String): Player
     override var LV=1
     override var bag= LinkedList<Item?>()
     override var map: MAP?= MAP_1()
+    override var MapNumber: Int=0
     init {
         for(iti in 1..20)
         {
@@ -40,6 +41,7 @@ class fighter(var n:String): Player
     override var LV=1
     override var bag= LinkedList<Item?>()
     override var map: MAP?= MAP_1()
+    override var MapNumber: Int=0
     init {
         for(iti in 1..20)
         {
@@ -63,4 +65,5 @@ class n(var n:String): Player
     override var LV=1
     override var bag= LinkedList<Item?>()
     override var map: MAP?= MAP_1()
+    override var MapNumber: Int=0
 }

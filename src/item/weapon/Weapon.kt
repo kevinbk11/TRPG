@@ -1,7 +1,7 @@
-package weapon
-
-import item.Item
-import item.Message
+package item.weapon
+import MainSystem.*
+import item.normalItem.Item
+import item.normalItem.Message
 import player.Player
 
 abstract class Weapon (var Damage:Int,var needLV:Int): Item
@@ -17,7 +17,7 @@ data class WoodSword(override var Count: Int=0) :Weapon(30,0)
     {
         P.hand=this
         this.Count-=1
-        Message(P,this)
+        Message(P, this)
     }
     override fun GetInfo()
     {

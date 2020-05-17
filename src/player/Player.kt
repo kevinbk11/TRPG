@@ -1,15 +1,12 @@
 package player
 
-
-import item.Item
-import item.Empty
+import MainSystem.*
+import item.normalItem.Item
+import item.normalItem.Empty
 import job.*
 import java.io.*
-import javax.management.ObjectInstance
 import map.MAP
-import map.MAP_1
 import java.util.*
-import kotlin.collections.ArrayList
 
 fun setjob(num:Int,name:String):Player
 {
@@ -29,10 +26,11 @@ interface Player:Serializable
     open var job:String
     open var HP:Int
     open var MP:Int
-    open var hand:Item?
+    open var hand: Item?
     open var LV:Int
     open var bag:LinkedList<Item?>
     open var map:MAP?
+    open var MapNumber:Int
     open fun levelup(){}
 
     open fun Info()
@@ -56,7 +54,7 @@ interface Player:Serializable
             }
         }
     }
-    open fun put(item:Item?,value:Int)
+    open fun put(item: Item?, value:Int)
     {
         var find=false
         var Value=value
@@ -73,7 +71,7 @@ interface Player:Serializable
         {
             for(x in 0..20)
             {
-                if(this.bag[x]!!.Name==Empty().Name)
+                if(this.bag[x]!!.Name== Empty().Name)
                 {
                     item!!.Count=value
                     this.bag[x]=item
