@@ -13,8 +13,9 @@ fun ItemDisplay(P:Player)
 {
     P.ShowBag()
     println("請輸入道具代碼")
-    var ItemNumber=input.nextInt()-1
-    if(P.bag[ItemNumber]!!.Name!=Empty().Name){
+    try
+    {
+        var ItemNumber=input.nextInt()-1
         P.bag[ItemNumber]
         println("請輸入接下來的操作,1為使用,2為顯示道具詳細,3為丟棄")
         when(input.nextInt())
@@ -27,9 +28,13 @@ fun ItemDisplay(P:Player)
             {
                 P.bag[ItemNumber]!!.GetInfo()
             }
+            3->
+            {
+                P.bag.removeAt(ItemNumber)
+            }
         }
     }
-    else
+    catch (e:Exception)
     {
         println("This Item Is Not Exist!!!")
     }
