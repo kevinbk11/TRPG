@@ -1,6 +1,7 @@
 package item
 import player.Player
 import java.io.Serializable
+import weapon.*
 import java.lang.reflect.GenericArrayType
 
 fun <T>Message(P:Player,I:T)
@@ -8,7 +9,8 @@ fun <T>Message(P:Player,I:T)
     when(I)
     {
         is Heal->println("你使用了${I.Name}\n目前HP=${P.HP}\n目前MP=${P.MP}")
-        is Weapon->println("穿上了${I.Name}")
+        is Weapon ->println("穿上了${I.Name}")
+        is NormalItem->println("u001B31;1m該道具無法使用.")
     }
 }
 
@@ -21,12 +23,12 @@ interface Item:Serializable
     fun GetInfo(){}
     fun use(P:Player){}
 }
-
-abstract class Weapon (var Damage:Int,var needLV:Int):Item
+abstract class NormalItem():Item
 {
-    override var Type="Weapon"
+    override var Type="Item"
     override var Count=0
 }
+
 
 abstract class  Heal(var Value:Int):Item
 {
@@ -63,21 +65,19 @@ data class BlueWater(override var Count: Int=0):Heal(50)
         println("${this.Name}   使用後恢復:${Value*2}血量")
     }
 }
-data class WoodSword(override var Count: Int=0) :Weapon(30,0)
+
+data class Item_1(override var Count: Int=0):NormalItem()
 {
-    override var Name: String="木劍"
-    override fun use(P:Player)
+    override var Name: String="轉轉鳥的羽毛"
+    override fun use(P: Player)
     {
-        P.hand=this
-        this.Count-=1
         Message(P,this)
     }
     override fun GetInfo()
     {
-        println("${this.Name}   傷害:${Damage}  需要等級:${needLV}")
+        println("轉轉鳥的羽毛,有著漂亮的青藍色")
     }
 }
-
 class Empty() :Item
 {
     override var Name="none"
