@@ -13,6 +13,7 @@ class magic(var n:String): Player
     override var name=n
     override var job="Magic"
     override var HP=500
+    override var MP=500
     override var hand: Item?= Empty()
     override var LV=1
     override var bag= LinkedList<Item?>()
@@ -34,6 +35,7 @@ class fighter(var n:String): Player
     override var name=n
     override var job="Fighter"
     override var HP=1000
+    override var MP=200
     override var hand: Item?= Empty()
     override var LV=1
     override var bag= LinkedList<Item?>()
@@ -56,6 +58,7 @@ class n(var n:String): Player
     override var name=n
     override var job="None"
     override var HP=0
+    override var MP=0
     override var hand: Item?= Empty()
     override var LV=1
     override var bag= LinkedList<Item?>()
