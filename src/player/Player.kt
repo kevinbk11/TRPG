@@ -1,8 +1,8 @@
 package player
 
-import MainSystem.*
-import item.normalItem.Item
-import item.normalItem.Empty
+import item.Consume.*
+import item.weapon.*
+import item.normalItem.*
 import job.*
 import java.io.*
 import map.MAP
@@ -26,7 +26,7 @@ interface Player:Serializable
     open var job:String
     open var HP:Int
     open var MP:Int
-    open var hand: Item?
+    open var hand: Weapon?
     open var LV:Int
     open var bag:LinkedList<Item?>
     open var map:MAP?

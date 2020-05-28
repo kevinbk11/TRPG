@@ -1,11 +1,25 @@
 import MainSystem.*
-import item.Consume.*
-import item.normalItem.*
-import item.weapon.*
-import player.*
+import com.andreapivetta.kolor.yellow
+import item.Consume.BlueWater
+import item.Consume.RedWater
+import item.normalItem.Item_1
+import item.weapon.ShortSword
+import item.weapon.WoodSword
+import map.m
+import player.Player
+import player.setjob
+import java.io.FileInputStream
+import java.io.ObjectInputStream
 import java.util.*
-import java.io.*
-import map.*
+
+const val ANSI_CLS = "\u001b[2J"
+const val ANSI_HOME = "\u001b[H"
+const val ANSI_BOLD = "\u001b[1m"
+const val ANSI_AT55 = "\u001b[10;10H"
+const val ANSI_REVERSEON = "\u001b[7m"
+const val ANSI_NORMAL = "\u001b[0m"
+const val ANSI_WHITEONBLUE = "\u001b[37;44m"
+
 
 
 val input= Scanner(System.`in`)
@@ -17,7 +31,8 @@ fun main(args:Array<String>)
     var move:Int
     move=input.nextInt()
     var People:Player
-    when(move)
+
+    when(move) 
     {
         1->{
             println("輸入職業代碼 1是戰士 2是法師")
@@ -27,6 +42,7 @@ fun main(args:Array<String>)
             People=setjob(jobnum,name)
             People.put(RedWater(),1)
             People.put(WoodSword(),1)
+            People.put(ShortSword(),1)
             People.put(BlueWater(),1)
             People.put(Item_1(),1)
             People.save()
@@ -53,7 +69,7 @@ fun game(P:Player)
     do
     {
         MapUpdata(P,P.MapNumber,Map)
-        println("\u001B[1m請輸入指令,L離開,D顯示玩家資料,I顯示物品欄,N前往下一張地圖,B回到上一張地圖\nK進入戰鬥")
+        println("請輸入指令,L離開,D顯示玩家資料,I顯示物品欄,N前往下一張地圖,B回到上一張地圖\nK進入戰鬥")
         println()
         println("目前所在地:${P.map!!.Name}")
         command=input.next().toUpperCase()
@@ -77,7 +93,7 @@ fun game(P:Player)
             }
             "K"->
             {
-                Fight(P.map)
+                Fight(P)
             }
         }
         P.save()

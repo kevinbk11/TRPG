@@ -1,11 +1,14 @@
 package MainSystem
 
 import item.normalItem.Empty
-import java.lang.Exception
+import map.m
+import player.Player
+import java.awt.event.KeyEvent
+import java.awt.event.KeyListener
 import java.util.*
-import player.*
-import map.*
-import java.awt.color.*
+import kotlin.concurrent.thread
+
+
 const val RESET = "\u001B[0m"
 const val BLACK = "\u001B[30m"
 const val REDDEEP = "\u001B[31;1m"
@@ -88,10 +91,11 @@ fun MapUpdata(P:Player,MapNumber: Int,Map:m)
     P.map=Map.MapSet[MapNumber]
 }
 
-fun Fight(Map:MAP?)
+fun Fight(P:Player)
 {
     var num=1
     println()
+    var Map=P.map
     for(Monster in Map!!.MonsterType)
     {
         print("${num}.${Monster!!.Name}   ")
@@ -99,11 +103,28 @@ fun Fight(Map:MAP?)
     }
     if(num==1)
     {
-        println("\u001b[38;5;1m"+"這裡沒有怪物!"+RESET)
+        println("這裡沒有怪物!")
     }
     else
     {
         println("請輸入怪物代碼")
         var MonsterNumber = input.nextInt()
+        var Monster = Map.MonsterType[MonsterNumber-1]
+        print("你的血量:${P.HP},   ${Monster!!.Name}的血量:${Monster!!.HP}\n")
+        FightThread(P).run()
     }
 }
+class FightThread(var PP:Player) : Thread() {
+    override fun run() {
+        super.run()
+        var cd=(PP.hand!!.CD*1000).toLong()
+        for(x in 0..4)
+        {
+            print("攻擊\n")
+            Thread.sleep(cd)
+        }
+    }
+}
+
+
+

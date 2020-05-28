@@ -58,7 +58,7 @@ data class Item_2(override var Count: Int=0): NormalItem()
     }
 }
 
-class Empty() : Item
+class Empty() :Weapon(0,0)
 {
     override var Name="none"
     override var Type="none"
