@@ -1,0 +1,4 @@
+package skill
+
+class Skill {
+}
