@@ -2,6 +2,7 @@ package MainSystem
 
 import item.normalItem.Empty
 import map.m
+import monster.*
 import player.Player
 import java.awt.event.KeyEvent
 import java.awt.event.KeyListener
@@ -109,22 +110,68 @@ fun Fight(P:Player)
     {
         println("請輸入怪物代碼")
         var MonsterNumber = input.nextInt()
-        var Monster = Map.MonsterType[MonsterNumber-1]
-        print("你的血量:${P.HP},   ${Monster!!.Name}的血量:${Monster!!.HP}\n")
-        FightThread(P).run()
-    }
-}
-class FightThread(var PP:Player) : Thread() {
-    override fun run() {
-        super.run()
-        var cd=(PP.hand!!.CD*1000).toLong()
-        for(x in 0..4)
+        try {
+            var Monster = Map.MonsterType[MonsterNumber-1]
+            Fighting(P,Monster)
+        }
+        catch (e:Exception)
         {
-            print("攻擊\n")
-            Thread.sleep(cd)
+            println("沒有這隻怪物")
         }
     }
 }
+fun Fighting(P:Player,M: Monster?)
+{
+    var Fail=false
+    while(M!!.HP>0)
+    {
+
+        print("你的血量:${P.HP},   ${M!!.Name}的血量:${M!!.HP}\n")
+        if(P.HP==0)
+        {
+            println("戰鬥失敗!")
+            P.HP=P.FullHP
+            Fail=true
+            break
+        }
+        var List:Int=1
+        for(skill in P.SkillList)
+        {
+            if(skill.name!="none")
+            {
+                print("${List}.${skill.name}   ")
+                if(List%3==0)
+                {
+                    println()
+                }
+                List++
+            }
+
+        }
+        println()
+        var attackCommand = input.nextInt()
+        P.SkillList[attackCommand].use(M,P)
+        M.Attack(P)
+    }
+    if(!Fail)
+    {
+        M.HP=M.FullHP
+        var prize=M.drop()
+        var count = M.ItemCount(prize)
+        if(count!=0)
+        {
+            P.put(prize,count)
+            println("你獲得了${prize!!.Name}${count}個")
+        }
+        P.EXP+=M.Exp
+        if(P.EXP>=P.FullEXP)
+        {
+            P.levelup()
+        }
+    }
+
+}
+
 
 
 

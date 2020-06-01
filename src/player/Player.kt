@@ -6,6 +6,8 @@ import item.normalItem.*
 import job.*
 import java.io.*
 import map.MAP
+import skill.NomralAttack
+import skill.Skill
 import java.util.*
 
 fun setjob(num:Int,name:String):Player
@@ -26,16 +28,22 @@ interface Player:Serializable
     open var job:String
     open var HP:Int
     open var MP:Int
+    open var FullHP:Int
+    open var FullMP:Int
     open var hand: Weapon?
     open var LV:Int
     open var bag:LinkedList<Item?>
     open var map:MAP?
     open var MapNumber:Int
+    open var Damage:Int
+    open var FullEXP:Double
+    open var EXP:Double
+    open var SkillList:LinkedList<Skill>
     open fun levelup(){}
 
     open fun Info()
     {
-        println("Name=${name}\nHP=${HP}\nhand=${hand!!.Name}\njob=${job}\nLV=${LV}\n")
+        println("Name=${name}\nHP=${HP}\nMP=${MP}\nhand=${hand!!.Name}\njob=${job}\nLV=${LV}\nDamage=${Damage}")
     }
 
     open fun ShowBag() {
@@ -80,7 +88,18 @@ interface Player:Serializable
             }
         }
     }
-
+    open fun LearningSkill(SKILL:Skill)
+    {
+        for(x in 1..20)
+        {
+            if (this.SkillList[x].name=="none")
+            {
+                SkillList[x]=SKILL
+                break
+            }
+        }
+    }
+    open fun PlayerUpdata(){}
     fun save()
     {
         val out = ObjectOutputStream(FileOutputStream("data.txt"))

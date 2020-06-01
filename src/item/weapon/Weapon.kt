@@ -15,7 +15,9 @@ abstract class Weapon (var Damage:Int,var needLV:Int): Item
     override fun use(P: Player)
     {
         P.put(P.hand,1)
+        P.Damage-=P.hand!!.Damage
         P.hand=this
+        P.Damage+=P.hand!!.Damage
         this.Count-=1
         Message(P, this)
     }

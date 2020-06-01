@@ -8,6 +8,7 @@ import item.weapon.WoodSword
 import map.m
 import player.Player
 import player.setjob
+import skill.NomralAttack
 import java.io.FileInputStream
 import java.io.ObjectInputStream
 import java.util.*
@@ -41,10 +42,10 @@ fun main(args:Array<String>)
             var name=input.next()
             People=setjob(jobnum,name)
             People.put(RedWater(),1)
-            People.put(WoodSword(),1)
             People.put(ShortSword(),1)
             People.put(BlueWater(),1)
             People.put(Item_1(),1)
+
             People.save()
             game(People)
         }
@@ -69,6 +70,7 @@ fun game(P:Player)
     do
     {
         MapUpdata(P,P.MapNumber,Map)
+        P.PlayerUpdata()
         println("請輸入指令,L離開,D顯示玩家資料,I顯示物品欄,N前往下一張地圖,B回到上一張地圖\nK進入戰鬥")
         println()
         println("目前所在地:${P.map!!.Name}")
