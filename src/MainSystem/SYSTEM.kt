@@ -172,6 +172,42 @@ fun Fighting(P:Player,M: Monster?)
 
 }
 
+fun NPC(P: Player)
+{
+    var num=1
+    for(npc in P.map!!.Npc)
+    {
+        println("${num},${npc!!.Name}   ")
+        num++
+    }
+    if(num==1)
+    {
+        println("\n這裡沒有NPC!!\n")
+    }
+    else
+    {
+        println("請輸入npc的代碼")
+        var n=input.nextInt()
+        var NPC=P.map!!.Npc[n-1]
+        var num=1
+        println()
+        if(NPC!!.HaveAnthorChoice)
+        {
+            for(Static in NPC.Static)
+            {
+                print("${num}.${Static}   ")
+                num++
+            }
+            println()
+            var choice=input.nextInt()
+            NPC.talk(choice)
+        }
+        else
+        {
+            NPC.talk(1)
+        }
+    }
+}
 
 
 

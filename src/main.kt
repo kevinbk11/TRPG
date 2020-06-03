@@ -1,17 +1,16 @@
 import MainSystem.*
-import com.andreapivetta.kolor.yellow
 import item.Consume.BlueWater
 import item.Consume.RedWater
 import item.normalItem.Item_1
 import item.weapon.ShortSword
-import item.weapon.WoodSword
 import map.m
 import player.Player
 import player.setjob
-import skill.NomralAttack
 import java.io.FileInputStream
+import java.io.IOException
 import java.io.ObjectInputStream
 import java.util.*
+
 
 const val ANSI_CLS = "\u001b[2J"
 const val ANSI_HOME = "\u001b[H"
@@ -21,6 +20,13 @@ const val ANSI_REVERSEON = "\u001b[7m"
 const val ANSI_NORMAL = "\u001b[0m"
 const val ANSI_WHITEONBLUE = "\u001b[37;44m"
 
+object CLS {
+    @Throws(IOException::class, InterruptedException::class)
+    @JvmStatic
+    fun main(arg: Array<String>) {
+        ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor()
+    }
+}
 
 
 val input= Scanner(System.`in`)
@@ -71,7 +77,7 @@ fun game(P:Player)
     {
         MapUpdata(P,P.MapNumber,Map)
         P.PlayerUpdata()
-        println("請輸入指令,L離開,D顯示玩家資料,I顯示物品欄,N前往下一張地圖,B回到上一張地圖\nK進入戰鬥")
+        println("請輸入指令,L離開,D顯示玩家資料,I顯示物品欄,N前往下一張地圖,B回到上一張地圖\nK進入戰鬥,T查看該地圖npc")
         println()
         println("目前所在地:${P.map!!.Name}")
         command=input.next().toUpperCase()
@@ -96,6 +102,10 @@ fun game(P:Player)
             "K"->
             {
                 Fight(P)
+            }
+            "T"->
+            {
+                NPC(P)
             }
         }
         P.save()
