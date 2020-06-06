@@ -169,9 +169,8 @@ fun Fighting(P:Player,M: Monster?)
             P.levelup()
         }
     }
-
+    P.UpdataQuest(M,P)
 }
-
 fun NPC(P: Player)
 {
     var num=1
@@ -200,11 +199,11 @@ fun NPC(P: Player)
             }
             println()
             var choice=input.nextInt()
-            NPC.talk(choice)
+            NPC.talk(choice,P)
         }
         else
         {
-            NPC.talk(1)
+            NPC.talk(1,P)
         }
     }
 }

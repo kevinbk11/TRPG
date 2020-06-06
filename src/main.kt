@@ -107,6 +107,10 @@ fun game(P:Player)
             {
                 NPC(P)
             }
+            "Q"->
+            {
+                P.CheckQuest()
+            }
         }
         P.save()
     }while(command!="L")

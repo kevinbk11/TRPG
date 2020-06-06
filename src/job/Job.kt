@@ -6,6 +6,8 @@ import item.weapon.WoodSword
 import map.MAP
 import map.MAP_1
 import player.Player
+import quest.NullQuest
+import quest.Quest
 import skill.NomralAttack
 import skill.*
 import java.util.*
@@ -31,6 +33,7 @@ class magic(var n:String): Player
     override var Damage=0
     override var MapNumber: Int=0
     override var SkillList=LinkedList<Skill>()
+    override var QuestList=LinkedList<Quest>()
     init {
 
         for(iti in 1..20)
@@ -40,6 +43,10 @@ class magic(var n:String): Player
         for(x in 1..20)
         {
             SkillList.add(none())
+        }
+        for(q in 1..20)
+        {
+            QuestList.add(NullQuest())
         }
         this.LearningSkill(NomralAttack())
     }
@@ -68,6 +75,7 @@ class fighter(var n:String): Player
     override var SkillList=LinkedList<Skill>()
     override var FullEXP: Double =150+(2.0).pow(LV*0.35)
     override var EXP: Double =0.0
+    override var QuestList=LinkedList<Quest>()
     var BasicStr: Double=0.0
     init {
         for(iti in 1..20)
@@ -77,6 +85,10 @@ class fighter(var n:String): Player
         for(x in 1..20)
         {
             SkillList.add(none())
+        }
+        for(q in 1..20)
+        {
+            QuestList.add(NullQuest())
         }
         this.LearningSkill(NomralAttack())
         this.LearningSkill(FighterSkill_1())
@@ -116,4 +128,5 @@ class n(var n:String): Player
     override var SkillList=LinkedList<Skill>()
     override var FullEXP: Double =150+(2.0).pow(0.35)
     override var EXP: Double =0.0
+    override var QuestList=LinkedList<Quest>()
 }
