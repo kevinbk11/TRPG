@@ -28,7 +28,7 @@ data class Quest_1(override var Name:String="村長怕鳥"):Quest
     override var MonsterCount= IntArray(10)
     override var NeedMonsterList=LinkedList<Monster>()
     override var Done=false
-    override var QuestWord= mapOf("Done" to "謝了","NotDone" to "你還沒完成吧","WasDone" to "謝謝")
+    override var QuestWord= mapOf("Done" to "謝了","NotDone" to "你還沒完成吧","WasDone" to "謝謝","BeforeAccept" to "幫我打鳥")
     init {
         NeedMonsterList.add(Monster_1())
         MonsterCount[0]=0
@@ -69,7 +69,7 @@ data class Quest_2(override var Name:String="村長要石頭"):Quest
     override var MonsterCount= IntArray(10)
     override var NeedMonsterList=LinkedList<Monster>()
     override var Done=false
-    override var QuestWord= mapOf("Done" to "謝了","NotDone" to "你還沒完成吧","WasDone" to "謝謝")
+    override var QuestWord= mapOf("Done" to "謝了","NotDone" to "你還沒完成吧","WasDone" to "謝謝","BeforeAccept" to "幫我打石頭")
     init {
         NeedMonsterList.add(Monster_2())
         MonsterCount[0]=0

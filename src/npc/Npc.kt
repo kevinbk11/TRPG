@@ -6,6 +6,8 @@ import quest.*
 import java.io.Serializable
 import java.lang.management.PlatformLoggingMXBean
 import java.util.*
+import java.util.zip.CheckedInputStream
+
 fun QuestStatus(P: Player,Q:Quest)
 {
     var r=0
@@ -13,6 +15,8 @@ fun QuestStatus(P: Player,Q:Quest)
     {
         if(x.Name==Q.Name)
         {
+            println(P.QuestList[r].Done)
+            println(P.QuestList[r].Accept)
             if(P.QuestList[r].Done and P.QuestList[r].Accept==true)
             {
                 say(Q.QuestWord["Done"])
@@ -59,7 +63,11 @@ interface Npc:Serializable
     {
         say("")
     }
-    fun quest(P: Player)
+    fun quest(P: Player,Choice: Int)
+    {
+
+    }
+    fun CheckQuest(N:Npc,P:Player)
     {
 
     }
@@ -72,7 +80,7 @@ data class NPC_1(override var Name:String="村長"):Npc
         NPCQuest.add(Quest_1())
         NPCQuest.add(Quest_2())
     }
-    override var Static= listOf("聊天","${NPCQuest[0].Name}","${NPCQuest[1].Name}")
+    override var Static= listOf("聊天","查看任務")
     override fun talk(command:Int,P:Player)
     {
         when(command)
@@ -83,24 +91,40 @@ data class NPC_1(override var Name:String="村長"):Npc
             }
             2->
             {
-                quest(P)
+                CheckQuest(this,P)
             }
         }
 
     }
-    override fun quest(P:Player)//之後要選擇任務
+
+    override fun CheckQuest(N: Npc,P:Player)
     {
-        if(this.NPCQuest[0] in P.QuestList==false)
+        var x=1
+        for(quest in N.NPCQuest)
         {
-            say("幫我打鳥拜託拜託拜託")
+            if(quest.Name!="N")
+            {
+                println("${x}.${quest.Name}   \n")
+                x++
+            }
+        }
+        println("輸入欲查看的任務")
+        var z = input.nextInt()
+        quest(P,z)
+    }
+    override fun quest(P:Player,Choice:Int)//之後要選擇任務
+    {
+        if(this.NPCQuest[Choice-1] in P.QuestList==false)
+        {
+            say(this.NPCQuest[Choice-1].QuestWord["BeforeAccept"])
             println("\n1接受 2拒絕\n")
             var x= input.nextInt()
             when(x)
             {
                 1->
                 {
-                    this.NPCQuest[0].Accept=true
-                    P.QuestList.add(this.NPCQuest[0])
+                    this.NPCQuest[Choice-1].Accept=true
+                    P.QuestList.add(this.NPCQuest[Choice-1])
 
                 }
                 2->
@@ -111,9 +135,8 @@ data class NPC_1(override var Name:String="村長"):Npc
         }
         else
         {
-            QuestStatus(P,NPCQuest[0])
-
-
+            print("?")
+            QuestStatus(P,NPCQuest[Choice-1])
         }
     }
 }
