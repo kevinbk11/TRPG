@@ -32,8 +32,9 @@ abstract class NormalItem(): Item
 }
 
 
-data class Item_1(override var Count: Int=0): NormalItem()
+object Item_1: NormalItem()
 {
+    override var Count: Int=0
     override var Name: String="轉轉鳥的羽毛"
     override fun use(P: Player)
     {
@@ -45,8 +46,9 @@ data class Item_1(override var Count: Int=0): NormalItem()
     }
 }
 
-data class Item_2(override var Count: Int=0): NormalItem()
+object Item_2: NormalItem()
 {
+    override var Count: Int=0
     override var Name: String="碎石"
     override fun use(P: Player)
     {
@@ -58,7 +60,7 @@ data class Item_2(override var Count: Int=0): NormalItem()
     }
 }
 
-class Empty() :Weapon(0,0)
+object Empty :Weapon(0,0)
 {
     override var Name="none"
     override var Type="none"

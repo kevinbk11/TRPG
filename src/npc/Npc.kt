@@ -72,13 +72,14 @@ interface Npc:Serializable
 
     }
 }
-data class NPC_1(override var Name:String="村長"):Npc
+object NPC_1:Npc
 {
+    override var Name:String="村長"
     override var HaveAnthorChoice=true
     override var NPCQuest=LinkedList<Quest>()
     init {
-        NPCQuest.add(Quest_1())
-        NPCQuest.add(Quest_2())
+        NPCQuest.add(Quest_1)
+        NPCQuest.add(Quest_2)
     }
     override var Static= listOf("聊天","查看任務")
     override fun talk(command:Int,P:Player)

@@ -72,12 +72,12 @@ interface Player:Serializable
         for (y in bag) {
             if (y!!.Count == 0) {
                 bag.remove(y)
-                bag.add(Empty())
+                bag.add(Empty)
                 break
             }
         }
         for (x in bag) {
-            if (x!!.Name != Empty().Name) {
+            if (x!!.Name != Empty.Name) {
                 println("${w}.${x!!.Name} x${x.Count}")
                 w++
             }
@@ -100,7 +100,7 @@ interface Player:Serializable
         {
             for(x in 0..20)
             {
-                if(this.bag[x]!!.Name== Empty().Name)
+                if(this.bag[x]!!.Name== Empty.Name)
                 {
                     item!!.Count=value
                     this.bag[x]=item

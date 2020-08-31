@@ -11,7 +11,7 @@ interface Skill:Serializable {
     fun<T>use(M: Monster?,P:T){}
 }
 
-class NomralAttack():Skill
+object NomralAttack:Skill
 {
     override var name:String = "普通攻擊"
     override fun <T>use(M: Monster?,P:T)
@@ -34,7 +34,7 @@ class NomralAttack():Skill
     }
 }
 
-class FighterSkill_1():Skill
+object FighterSkill_1:Skill
 {
     override var name:String="沉重打擊"
     override fun <T>use(M:Monster?,P:T)
@@ -60,7 +60,7 @@ class FighterSkill_1():Skill
     }
 }
 
-class none():Skill
+object none:Skill
 {
     override var name:String="none"
 }

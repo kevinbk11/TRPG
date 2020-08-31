@@ -22,10 +22,10 @@ class magic(var n:String): Player
     override var MP=300
     override var FullHP=200
     override var FullMP=300
-    override var hand: Weapon? = Empty()
+    override var hand: Weapon? = Empty
     override var LV=1
     override var bag= LinkedList<Item?>()
-    override var map: MAP?= MAP_1()
+    override var map: MAP?= MAP_1
 
     override var FullEXP: Double =150+(2.0).pow(0.35)
     override var EXP: Double =0.0
@@ -38,17 +38,17 @@ class magic(var n:String): Player
 
         for(iti in 1..20)
         {
-            bag.add(Empty())
+            bag.add(Empty)
         }
         for(x in 1..20)
         {
-            SkillList.add(none())
+            SkillList.add(none)
         }
         for(q in 1..20)
         {
-            QuestList.add(NullQuest())
+            QuestList.add(NullQuest)
         }
-        this.LearningSkill(NomralAttack())
+        this.LearningSkill(NomralAttack)
     }
     override fun levelup() {
         println("LEVEL UP!")
@@ -66,10 +66,10 @@ class fighter(var n:String): Player
     override var MP=100
     override var FullHP=500
     override var FullMP=100
-    override var hand: Weapon? = WoodSword()
+    override var hand: Weapon? = WoodSword
     override var LV=1
     override var bag= LinkedList<Item?>()
-    override var map: MAP?= MAP_1()
+    override var map: MAP?= MAP_1
     override var Damage=0
     override var MapNumber: Int=0
     override var SkillList=LinkedList<Skill>()
@@ -80,18 +80,18 @@ class fighter(var n:String): Player
     init {
         for(iti in 1..20)
         {
-            bag.add(Empty())
+            bag.add(Empty)
         }
         for(x in 1..20)
         {
-            SkillList.add(none())
+            SkillList.add(none)
         }
         for(q in 1..20)
         {
-            QuestList.add(NullQuest())
+            QuestList.add(NullQuest)
         }
-        this.LearningSkill(NomralAttack())
-        this.LearningSkill(FighterSkill_1())
+        this.LearningSkill(NomralAttack)
+        this.LearningSkill(FighterSkill_1)
     }
     override fun levelup() {
         println("LEVEL UP!")
@@ -119,11 +119,11 @@ class n(var n:String): Player
     override var MP=0
     override var FullHP=500
     override var FullMP=100
-    override var hand: Weapon? = Empty()
+    override var hand: Weapon? = Empty
     override var Damage=0
     override var LV=1
     override var bag= LinkedList<Item?>()
-    override var map: MAP?= MAP_1()
+    override var map: MAP?= MAP_1
     override var MapNumber: Int=0
     override var SkillList=LinkedList<Skill>()
     override var FullEXP: Double =150+(2.0).pow(0.35)

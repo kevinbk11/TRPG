@@ -22,8 +22,9 @@ interface Quest:Serializable
 }
 
 
-data class Quest_1(override var Name:String="村長怕鳥"):Quest
+object Quest_1:Quest
 {
+    override var Name:String="村長怕鳥"
     override var Accept=false
     override var MonsterCount= IntArray(10)
     override var NeedMonsterList=LinkedList<Monster>()
@@ -62,9 +63,9 @@ data class Quest_1(override var Name:String="村長怕鳥"):Quest
     }
 }
 
-
-data class Quest_2(override var Name:String="村長要石頭"):Quest
+object Quest_2:Quest
 {
+    override var Name:String="村長要石頭"
     override var Accept=false
     override var MonsterCount= IntArray(10)
     override var NeedMonsterList=LinkedList<Monster>()
@@ -104,8 +105,9 @@ data class Quest_2(override var Name:String="村長要石頭"):Quest
 }
 
 
-data class NullQuest(override var Name:String="N"):Quest
+object NullQuest:Quest
 {
+    override var Name:String="N"
     override var Accept=false
     override var MonsterCount= IntArray(10)
     override var NeedMonsterList=LinkedList<Monster>()

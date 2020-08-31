@@ -10,8 +10,9 @@ abstract class  Heal(var Value:Int): Item
     override var Count=0
 }
 
-data class RedWater (override var Count: Int=0): Heal(50)
+object RedWater : Heal(50)
 {
+    override var Count: Int=0
     override var Name="紅水"
     override fun use(P: Player)
     {
@@ -24,8 +25,9 @@ data class RedWater (override var Count: Int=0): Heal(50)
         println("${this.Name}   使用後恢復:${Value}血量")
     }
 }
-data class BlueWater(override var Count: Int=0): Heal(50)
+object BlueWater: Heal(50)
 {
+    override var Count: Int=0
     override var Name="藍水"
     override fun use(P: Player)
     {

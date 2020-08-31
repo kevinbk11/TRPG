@@ -30,7 +30,7 @@ object CLS {
 
 
 val input= Scanner(System.`in`)
-var Map=m()
+var Map=m
 fun main(args:Array<String>)
 {
     Map.Load()
@@ -47,11 +47,11 @@ fun main(args:Array<String>)
             println("輸入名稱")
             var name=input.next()
             People=setjob(jobnum,name)
-            People.put(RedWater(),1)
-            People.put(ShortSword(),1)
-            People.put(BlueWater(),1)
-            People.put(Item_1(),1)
-
+            People.put(RedWater,1)
+            People.put(ShortSword,1)
+            People.put(BlueWater,1)
+            People.put(Item_1,1)
+            People.put(RedWater,1)
             People.save()
             game(People)
         }

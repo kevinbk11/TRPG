@@ -56,8 +56,8 @@ data class Monster_1(override var Exp:Int=30):Monster
     override var Damage=9
     override var LV=1
 
-    val I1= Item_1()
-    val I2= RedWater()
+    val I1= Item_1
+    val I2= RedWater
     override fun drop(): Item?
     {
         val rd= Random.nextInt(0,100)
@@ -113,8 +113,8 @@ data class Monster_2(override var Exp:Int=35):Monster
     override var FullHP=135
     override var Damage=12
     override var LV=2
-    val I1= Item_2()
-    val I2= BlueWater()
+    val I1= Item_2
+    val I2= BlueWater
 
     override fun drop(): Item?
     {

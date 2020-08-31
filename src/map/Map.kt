@@ -13,7 +13,7 @@ interface MAP:Serializable
     var Npc:LinkedList<Npc?>
 }
 
-class MAP_1():MAP
+object MAP_1:MAP
 {
     override var Name="探險發源地(1-3)"
     override var MonsterType=LinkedList<Monster?>()
@@ -24,22 +24,22 @@ class MAP_1():MAP
     }
 
 }
-class MAP_2():MAP
+object MAP_2:MAP
 {
     override var Name="艾村"
     override var MonsterType=LinkedList<Monster?>()
     override var Npc=LinkedList<Npc?>()
     init{
-        Npc.add(NPC_1())
+        Npc.add(NPC_1)
     }
 }
 
-class m()
+object m
 {
     var MapSet=ArrayList<MAP?>(100)
     fun Load()
     {
-        MapSet.add(MAP_1())
-        MapSet.add(MAP_2())
+        MapSet.add(MAP_1)
+        MapSet.add(MAP_2)
     }
 }

@@ -23,14 +23,16 @@ abstract class Weapon (var Damage:Int,var needLV:Int): Item
     }
 }
 
-data class WoodSword(override var Count: Int=0) :Weapon(30,0)
+object WoodSword :Weapon(30,0)
 {
+    override var Count: Int=0
     override var CD=1.0
     override var Name: String="木劍"
 }
 
-data class ShortSword(override var Count: Int=0) :Weapon(16,0)
+object ShortSword :Weapon(16,0)
 {
+    override var Count: Int=0
     override var CD=0.5
     override var Name: String="短刀"
 
