@@ -56,6 +56,15 @@ interface Player:Serializable
 
         }
     }
+    open fun use(I:Weapon)
+    {
+        this.put(this.hand,1)
+        this.Damage-=this.hand!!.Damage
+        this.hand=I
+        this.Damage+=this.hand!!.Damage
+        I.Count-=1
+        Message(this, I)
+    }
     open fun Info()
     {
         println("Name=${name}\nHP=${HP}\nMP=${MP}\nhand=${hand!!.Name}\njob=${job}\nLV=${LV}\nDamage=${Damage}")

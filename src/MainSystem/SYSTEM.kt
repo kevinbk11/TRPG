@@ -1,6 +1,7 @@
 package MainSystem
 
 import item.normalItem.Empty
+import item.weapon.Weapon
 import map.m
 import monster.*
 import player.Player
@@ -43,7 +44,7 @@ fun ItemDisplay(P:Player)
         {
             1->
             {
-                P.bag[ItemNumber]!!.use(P)
+                P.use(P.bag[ItemNumber] as Weapon)
             }
             2->
             {
