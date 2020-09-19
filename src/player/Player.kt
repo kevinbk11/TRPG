@@ -56,14 +56,25 @@ interface Player:Serializable
 
         }
     }
-    open fun use(I:Weapon)
+    open fun <T>use(I:T)
     {
-        this.put(this.hand,1)
-        this.Damage-=this.hand!!.Damage
-        this.hand=I
-        this.Damage+=this.hand!!.Damage
-        I.Count-=1
-        Message(this, I)
+        when(I)
+        {
+            is Weapon->
+            {
+                this.put(this.hand,1)
+                this.Damage-=this.hand!!.Damage
+                this.hand=I
+                this.Damage+=this.hand!!.Damage
+                I.Count-=1
+            }
+            is Heal->
+            {
+                this.HP+=I.Value
+                I.Count-=1
+            }
+        }
+        Message(this,I)
     }
     open fun Info()
     {

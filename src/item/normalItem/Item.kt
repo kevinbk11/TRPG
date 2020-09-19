@@ -11,7 +11,7 @@ fun <T>Message(P:Player,I:T)
     {
         is Heal ->println("你使用了${I.Name}\n目前HP=${P.HP}\n目前MP=${P.MP}")
         is Weapon ->println("穿上了${I.Name}")
-        is NormalItem ->println("\u001b[38;5;1m該道具無法使用."+RESET)
+        is NormalItem ->println("該道具無法使用.")
     }
 }
 
