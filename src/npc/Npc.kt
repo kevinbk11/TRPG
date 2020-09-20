@@ -35,18 +35,17 @@ fun QuestStatus(P: Player,Q:Quest)
     {
         if(x.Name==Q.Name)
         {
-            println(P.QuestList[r].Done)
-            println(P.QuestList[r].Accept)
             if(P.QuestList[r].Done and P.QuestList[r].Accept==true)
             {
                 say(Q.QuestWord["Done"])
                 P.QuestList[r].Accept=false
+                P.QuestList[r].HadBeenDone=true
             }
-            else if(P.QuestList[r].Done==false and P.QuestList[r].Accept==true)
+            else if(!P.QuestList[r].HadBeenDone)
             {
                 say(Q.QuestWord["NotDone"])
             }
-            else if(P.QuestList[r].Done and P.QuestList[r].Accept==false)
+            else if(P.QuestList[r].HadBeenDone)
             {
                 say(Q.QuestWord["WasDone"])
             }

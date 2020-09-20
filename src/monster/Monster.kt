@@ -37,5 +37,14 @@ interface Monster:Serializable
        s.use(P)
     }
 }
+object EmptyMonster:Monster
+{
+    override var Exp: Int = 0
+    override var Name = "null"
+    override var HP = 0
+    override var FullHP = 0
+    override var Damage = 0
+    override var LV = 0
+}
 
 

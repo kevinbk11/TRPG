@@ -1,6 +1,7 @@
 import MainSystem.*
 import item.*
 import map.m
+import monster.EmptyMonster
 import player.Player
 import player.setjob
 import java.io.FileInputStream
@@ -79,11 +80,12 @@ fun game(P: Player)
             "Q" -> {
                 P.CheckQuest()
             }
-            "SystemCall"->
+            "SYSTEMCALL"->
             {
                 P.put(AdminFist,1)
             }
         }
+        P.UpdataQuest(EmptyMonster)
         P.save()
     }while(command!="L")
 }
