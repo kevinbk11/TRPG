@@ -1,6 +1,7 @@
 package map
-import MainSystem.*
 import monster.*
+import monster.monsterType.LittleStone
+import monster.monsterType.TurnTurnBird
 import npc.*
 import java.io.Serializable
 import java.util.*
@@ -13,33 +14,17 @@ interface MAP:Serializable
     var Npc:LinkedList<Npc?>
 }
 
-object MAP_1:MAP
-{
-    override var Name="探險發源地(1-3)"
-    override var MonsterType=LinkedList<Monster?>()
-    override var Npc=LinkedList<Npc?>()
-    init {
-        MonsterType.add(Monster_1())
-        MonsterType.add(Monster_2())
-    }
-
-}
-object MAP_2:MAP
-{
-    override var Name="艾村"
-    override var MonsterType=LinkedList<Monster?>()
-    override var Npc=LinkedList<Npc?>()
-    init{
-        Npc.add(NPC_1)
-    }
-}
 
 object m
 {
     var MapSet=ArrayList<MAP?>(100)
     fun Load()
     {
-        MapSet.add(MAP_1)
-        MapSet.add(MAP_2)
+        MapSet.add(MAP_1())
+        MapSet.add(MAP_2())
     }
 }
+/*
+MAP1=探險發源地
+MAP2=艾村
+*/

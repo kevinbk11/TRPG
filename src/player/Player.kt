@@ -1,14 +1,13 @@
 package player
 
-import item.Consume.*
+
+import item.*
 import item.weapon.*
-import item.normalItem.*
 import job.*
 import java.io.*
 import map.MAP
 import monster.Monster
 import quest.Quest
-import skill.NomralAttack
 import skill.Skill
 import java.util.*
 
@@ -24,6 +23,7 @@ fun setjob(num:Int,name:String):Player
     }
     return N
 }
+
 interface Player:Serializable
 {
     open var name:String
@@ -34,7 +34,7 @@ interface Player:Serializable
     open var FullMP:Int
     open var hand: Weapon?
     open var LV:Int
-    open var bag:LinkedList<Item?>
+    open var bag:LinkedList<Item>
     open var map:MAP?
     open var MapNumber:Int
     open var Damage:Int
@@ -56,6 +56,10 @@ interface Player:Serializable
 
         }
     }
+    open fun Attack(M: Monster,S:Skill)
+    {
+        S.use(M,this)
+    }
     open fun <T>use(I:T)
     {
         when(I)
@@ -70,7 +74,8 @@ interface Player:Serializable
             }
             is Heal->
             {
-                this.HP+=I.Value
+                this.HP+=I.HealHP
+                this.MP+=I.HealMP
                 I.Count-=1
             }
         }
@@ -80,11 +85,11 @@ interface Player:Serializable
     {
         println("Name=${name}\nHP=${HP}\nMP=${MP}\nhand=${hand!!.Name}\njob=${job}\nLV=${LV}\nDamage=${Damage}")
     }
-    open fun UpdataQuest(M:Monster,P:Player)
+    open fun UpdataQuest(M:Monster)
     {
         for(QUEST in this.QuestList)
         {
-            QUEST.Updata(M,P)
+            QUEST.Updata(M,this)
         }
     }
     open fun ShowBag() {

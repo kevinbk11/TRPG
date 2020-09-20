@@ -1,55 +1,13 @@
 package MainSystem
 
-import item.normalItem.Empty
-import item.weapon.Weapon
+import item.*
 import map.*
 import monster.*
 import player.Player
-import java.awt.event.KeyEvent
-import java.awt.event.KeyListener
 import java.util.*
-import kotlin.concurrent.thread
 
 
-var command=""
-fun game(P: Player)
-{
-    m.Load()
-    do
-    {
-        MapUpdata(P, P.MapNumber, m)
-        P.PlayerUpdata()
-        println("請輸入指令,L離開,D顯示玩家資料,I顯示物品欄,N前往下一張地圖,B回到上一張地圖\nK進入戰鬥,T查看該地圖npc")
-        println()
-        println("目前所在地:${P.map!!.Name}")
-        command=input.next().toUpperCase()
-        when(command)
-        {
-            "D" -> {
-                P.Info()
-            }
-            "I" -> {
-                ItemDisplay(P)
-            }
-            "N" -> {
-                P.MapNumber = NextMap(P.MapNumber, m.MapSet.size)
-            }
-            "B" -> {
-                P.MapNumber = LastMap(P.MapNumber, m.MapSet.size)
-            }
-            "K" -> {
-                Fight(P)
-            }
-            "T" -> {
-                NPC(P)
-            }
-            "Q" -> {
-                P.CheckQuest()
-            }
-        }
-        P.save()
-    }while(command!="L")
-}
+
 val input= Scanner(System.`in`)
 fun ItemDisplay(P:Player)
 {
@@ -58,7 +16,7 @@ fun ItemDisplay(P:Player)
     try
     {
         var ItemNumber=input.nextInt()-1
-        if(P.bag[ItemNumber]!!.Name== Empty.Name)throw Exception()
+        if(P.bag[ItemNumber]== Empty)throw Exception()
         println("請輸入接下來的操作,1為使用,2為顯示道具詳細,3為丟棄")
         when(input.nextInt())
         {
@@ -171,7 +129,7 @@ fun Fighting(P:Player,M: Monster?)
         }
         println()
         var attackCommand = input.nextInt()
-        P.SkillList[attackCommand].use(M,P)
+        P.Attack(M,P.SkillList[attackCommand])
         M.Attack(P)
     }
     if(!Fail)
@@ -189,8 +147,9 @@ fun Fighting(P:Player,M: Monster?)
         {
             P.levelup()
         }
+        P.UpdataQuest(M)
     }
-    P.UpdataQuest(M,P)
+
 }
 fun NPC(P: Player)
 {
