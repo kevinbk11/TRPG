@@ -8,31 +8,67 @@ import player.Player
 import java.io.BufferedOutputStream
 import java.io.Serializable
 import java.util.*
+import kotlin.reflect.jvm.internal.impl.util.Check
 
-interface Quest:Serializable
+open class Quest:Serializable
 {
-    open var QuestWord:Map<String,String>
-    open var Name:String
-    open var Accept:Boolean
-    open var NeedMonsterList:LinkedList<Monster>
-    open var NeedItemList:LinkedList<Item?>
-    open var ItemCount:Array<Int>
-    open var MonsterCount:Array<Int>
-    open var Done:Boolean
-    open var HadBeenDone:Boolean
-    open fun Updata(M:Monster,P:Player)
+    open var QuestWord:Map<String,String> = mapOf("Done" to "謝了")
+    open var Name:String=""
+    open var Accept:Boolean=false
+    open var NeedMonsterList:LinkedList<Monster> = LinkedList()
+    open var NeedItemList:LinkedList<Item?> = LinkedList()
+    open var NeedMonsterCount:LinkedList<Int> = LinkedList()
+    open var NeedItemCount:LinkedList<Int> = LinkedList()
+    open var ItemCount:Array<Int> =Array(10,{it->0})
+    open var MonsterCount:Array<Int> =Array(10,{it->0})
+    open var Done:Boolean=false
+    open var HadBeenDone:Boolean=false
+    fun Updata(M:Monster,P:Player)
     {
-
+        if(this.HadBeenDone==false && this.Name!="N")
+        {
+            if(M.Name!="null")
+            {
+                CheckMonesterCount(M)
+            }
+            CheckItemCount(P)
+            var Done=CheckDone()
+            if(Done)
+            {
+                QuestDone()//顯示完成訊息
+            }
+            else
+            {
+                this.Done=false
+            }
+        }
     }
-    fun QuestDone(P: Player)
+    fun QuestDone()
     {
         println("\n任務 ${this.Name} 已完成!!!!\n")
         this.Done=true
-
+    }
+    fun CheckDone():Boolean
+    {
+        for(x in 0..this.NeedMonsterList.size-1)
+        {
+            if(this.NeedMonsterCount[x]>this.MonsterCount[x])
+            {
+                return false
+            }
+        }
+        for(x in 0..this.NeedItemList.size-1)
+        {
+            if(this.NeedItemCount[x]>this.ItemCount[x])
+            {
+                return false
+            }
+        }
+        return true
     }
     fun CheckMonesterCount(M:Monster)
     {
-        for(x in 0..10)
+        for(x in 0..this.NeedMonsterList.size-1)
         {
             if(M.Name==this.NeedMonsterList[x]!!.Name)
             {
@@ -50,7 +86,7 @@ interface Quest:Serializable
             {
                 if(x.Name==w!!.Name)
                 {
-                    for(y in 0..9)
+                    for(y in 0..this.NeedItemList.size-1)
                     {
                         if(this.NeedItemList[y]!!.Name==x.Name)
                         {
@@ -73,7 +109,7 @@ interface Quest:Serializable
     }
 }
 
-class nullQuest:Quest
+class nullQuest:Quest()
 {
     override var Name:String="N"
     override var Accept=false
@@ -86,8 +122,6 @@ class nullQuest:Quest
     override var HadBeenDone=false
 }
 var NullQuest = nullQuest()
-var Quest_1 = Quest1()
-var Quest_2 = Quest2()
 /*
 Q1村長怕鳥
 Q2村長要石頭

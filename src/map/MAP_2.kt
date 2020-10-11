@@ -10,6 +10,7 @@ class MAP_2:MAP
     override var MonsterType= LinkedList<Monster?>()
     override var Npc= LinkedList<Npc?>()
     init{
-        Npc.add(NPC_1)
+        Npc.add(NPC1())
+        Npc.add(NPC2())
     }
 }

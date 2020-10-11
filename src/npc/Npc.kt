@@ -1,6 +1,7 @@
 package npc
 
 
+import MainSystem.input
 import player.Player
 import quest.*
 import java.io.Serializable
@@ -8,23 +9,62 @@ import npc.*
 import java.util.*
 
 
-interface Npc:Serializable
+open class Npc:Serializable
 {
-    open var Name:String
-    open var NPCQuest:LinkedList<Quest>
-    open var HaveAnthorChoice:Boolean
-    open var Static:List<String>
-    fun talk(command:Int,P:Player)
+    open var Name:String=""//NPC名稱
+    open var NPCQuest:LinkedList<Quest> =LinkedList()
+    open var HaveAnthorChoice=false//NPC是否有其他功能 如商城或聊天
+    open var Static= listOf("聊天","查看任務")
+
+    open fun talk(command:Int,P:Player)
     {
         say("")
     }
     fun quest(P: Player,Choice: Int)
     {
+        var unfind=true
+        for(x in P.QuestList)
+        {
+            if (this.NPCQuest[Choice-1].Name==x.Name)
+            {
+                QuestStatus(P,NPCQuest[Choice-1])
+                unfind=false
+                break
+            }
+        }
+        if(unfind) {
+            say(this.NPCQuest[Choice - 1].QuestWord["BeforeAccept"])
+            println("\n1接受 2拒絕\n")
+            var x = input.nextInt()
+            when (x) {
+                1 -> {
+                    this.NPCQuest[Choice - 1].Accept = true
+                    P.QuestList.add(this.NPCQuest[Choice - 1])
 
+                }
+                2 -> {
+
+                }
+            }
+        }
     }
-    fun CheckQuest(N:Npc,P:Player)
+    fun CheckQuest(P:Player)
     {
-
+        if(this.NPCQuest.isNotEmpty())
+        {
+            var x=1
+            for(quest in this.NPCQuest)
+            {
+                if(quest.Name!="N")
+                {
+                    println("${x}.${quest.Name}   \n")
+                    x++
+                }
+            }
+            println("輸入欲查看的任務")
+            var z = input.nextInt()
+            quest(P,z)
+        }
     }
 }
 
@@ -73,8 +113,7 @@ fun say(word:String?)
         println("\n")
     }
 }
-//NPC寫好後在下方實體化物件
-var NPC_1=npc.NPC1()
 /*
 NPC1村長
+NPC2村民
  */

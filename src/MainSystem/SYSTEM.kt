@@ -89,9 +89,10 @@ fun Fight(P:Player)
     {
         println("請輸入怪物代碼")
         var MonsterNumber = input.nextInt()
-        try {
-            var Monster = Map.MonsterType[MonsterNumber-1]
-            Fighting(P,Monster)
+        try
+        {
+            var Monster = Map.MonsterType[MonsterNumber - 1]
+            Fighting(P, Monster)
         }
         catch (e:Exception)
         {

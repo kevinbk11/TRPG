@@ -85,7 +85,6 @@ fun game(P: Player)
                 P.put(AdminFist,1)
             }
         }
-        P.UpdataQuest(EmptyMonster)
         P.save()
     }while(command!="L")
 }
