@@ -25,7 +25,7 @@ class magic(var n:String): Player
     override var LV=1
     override var bag:LinkedList<Item> = LinkedList()
     override var map: MAP?= MAP_1()
-
+    override var Money=0
     override var FullEXP: Double =150+(2.0).pow(0.35)
     override var EXP: Double =0.0
     var INT:Int=0

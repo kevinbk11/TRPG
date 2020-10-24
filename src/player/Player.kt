@@ -42,6 +42,7 @@ interface Player:Serializable
     open var EXP:Double
     open var SkillList:LinkedList<Skill>
     open var QuestList:LinkedList<Quest>
+    open var Money:Int
     open fun levelup(){}
     open fun CheckQuest()
     {
@@ -83,7 +84,7 @@ interface Player:Serializable
     }
     open fun Info()
     {
-        println("Name=${name}\nHP=${HP}\nMP=${MP}\nhand=${hand!!.Name}\njob=${job}\nLV=${LV}\nDamage=${Damage}")
+        println("Name=${name}\nHP=${HP}\nMP=${MP}\nmoney=${Money}\nhand=${hand!!.Name}\njob=${job}\nLV=${LV}\nDamage=${Damage}")
     }
     open fun UpdataQuest(M:Monster)
     {

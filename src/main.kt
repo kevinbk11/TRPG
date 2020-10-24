@@ -1,13 +1,11 @@
 import MainSystem.*
 import item.*
 import map.m
-import monster.EmptyMonster
 import player.Player
 import player.setjob
 import java.io.FileInputStream
 import java.io.ObjectInputStream
 import java.util.*
-
 
 
 val input= Scanner(System.`in`)
@@ -16,7 +14,7 @@ fun main(args: Array<String>)
 {
 
     Map.Load()
-    print("按1建檔 按2讀檔\n")
+    print(27.toChar()+"[31m"+"按1建檔 按2讀檔\n")
     var move:Int
     move=input.nextInt()
     var People:Player
@@ -80,9 +78,8 @@ fun game(P: Player)
             "Q" -> {
                 P.CheckQuest()
             }
-            "SYSTEMCALL"->
-            {
-                P.put(AdminFist,1)
+            "SYSTEMCALL" -> {
+                P.put(AdminFist, 1)
             }
         }
         P.save()

@@ -46,11 +46,16 @@ abstract class Weapon (var Damage:Int,var needLV:Int): Item
     }
 }
 //道具寫好後在下方實體化物件
+//----------------消耗品
 var BlueWater= BlueWater()
 var RedWater = RedWater()
+//----------------雜物
 var BrokenStone=BrokenStone()
 var TurnTurnBirdFeather = TurnTurnBirdFeather()
+//----------------武器
 var AdminFist = AdminFist()
 var Empty=Empty()
 var ShortSword=ShortSword()
 var WoodSword = WoodSword()
+//----------------任務道具
+var QuestItem1=QuestItem1()

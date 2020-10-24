@@ -28,4 +28,5 @@ class n(var n:String): Player
     override var FullEXP: Double =150+(2.0).pow(0.35)
     override var EXP: Double =0.0
     override var QuestList= LinkedList<Quest>()
+    override var Money=0
 }

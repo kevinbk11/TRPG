@@ -20,7 +20,7 @@ open class Npc:Serializable
     {
         say("")
     }
-    fun quest(P: Player,Choice: Int)
+    fun quest(P: Player,Choice: Int):Boolean
     {
         var unfind=true
         for(x in P.QuestList)
@@ -40,15 +40,16 @@ open class Npc:Serializable
                 1 -> {
                     this.NPCQuest[Choice - 1].Accept = true
                     P.QuestList.add(this.NPCQuest[Choice - 1])
-
+                    return true
                 }
                 2 -> {
-
+                    return false
                 }
             }
         }
+        return false
     }
-    fun CheckQuest(P:Player)
+    fun CheckQuest(P:Player):Boolean
     {
         if(this.NPCQuest.isNotEmpty())
         {
@@ -63,8 +64,9 @@ open class Npc:Serializable
             }
             println("輸入欲查看的任務")
             var z = input.nextInt()
-            quest(P,z)
+            return quest(P,z)
         }
+        return false
     }
 }
 
@@ -80,6 +82,23 @@ fun QuestStatus(P: Player,Q:Quest)
                 say(Q.QuestWord["Done"])
                 P.QuestList[r].Accept=false
                 P.QuestList[r].HadBeenDone=true
+                for(x in 0..Q.NeedItemList.size-1)
+                {
+                    for(y in 0..P.bag.size)
+                    {
+                        if(Q.NeedItemList[x]!!.Name==P.bag[y].Name)
+                        {
+                            P.bag[y].Count-=Q.NeedItemCount[x]
+                            break
+                        }
+                    }
+                }
+                for(x in 0..Q.ItemPrize.size-1)
+                {
+                    P.put(Q.ItemPrize[x],Q.ItemPrizeCount[x])
+                }
+                P.EXP+=Q.Exp
+                P.Money+=Q.Money
             }
             else if(!P.QuestList[r].HadBeenDone)
             {

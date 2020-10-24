@@ -29,6 +29,7 @@ class fighter(var n:String): Player
     override var FullEXP: Double =150+(2.0).pow(LV*0.35)
     override var EXP: Double =0.0
     override var QuestList= LinkedList<Quest>()
+    override var Money=0
     var BasicStr: Double=0.0
     init {
         for(iti in 1..20)

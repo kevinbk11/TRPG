@@ -23,6 +23,10 @@ open class Quest:Serializable
     open var MonsterCount:Array<Int> =Array(10,{it->0})
     open var Done:Boolean=false
     open var HadBeenDone:Boolean=false
+    open var Exp:Int=0
+    open var Money:Int=0
+    open var ItemPrize:LinkedList<Item> = LinkedList()
+    open var ItemPrizeCount:LinkedList<Int> = LinkedList()
     fun Updata(M:Monster,P:Player)
     {
         if(this.HadBeenDone==false && this.Name!="N")
