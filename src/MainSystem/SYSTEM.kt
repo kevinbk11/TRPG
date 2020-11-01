@@ -131,6 +131,11 @@ fun Fighting(P:Player,M: Monster?)
         println()
         var attackCommand = input.nextInt()
         P.Attack(M,P.SkillList[attackCommand])
+        if(M.HP<=0)
+        {
+            println("${M.Name}倒下了! 戰鬥勝利!\n")
+            break
+        }
         M.Attack(P)
     }
     if(!Fail)
@@ -141,17 +146,17 @@ fun Fighting(P:Player,M: Monster?)
         if(count!=0)
         {
             P.put(prize,count)
-            println("你獲得了${prize!!.Name}${count}個")
+            println("你獲得了${prize!!.Name}${count}個\n")
         }
+        var r = Random.nextDouble(0.80000,1.20000)*M.Money
+        var x=r.toInt()
+        println("你獲得了${x}艾幣\n")
+        P.Money+=x
         P.EXP+=M.Exp
         if(P.EXP>=P.FullEXP)
         {
             P.levelup()
         }
-        var r = Random.nextDouble(0.80000,1.20000)*M.Money
-        var x=r.toInt()
-        println("你獲得了${x}元")
-        P.Money+=x
         P.UpdataQuest(M)
     }
 

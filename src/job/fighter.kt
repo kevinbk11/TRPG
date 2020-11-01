@@ -20,6 +20,9 @@ class fighter(var n:String): Player
     override var FullHP=500
     override var FullMP=100
     override var hand: Weapon? = WoodSword
+    override var cloth:Cloth?= LeatherArmor
+    override var pants:Pants?= LeatherPants
+    override var def=0
     override var LV=1
     override var bag:LinkedList<Item> = LinkedList()
     override var map: MAP?= MAP_1()
@@ -62,5 +65,6 @@ class fighter(var n:String): Player
     override fun PlayerUpdata()
     {
         this.Damage=(this.BasicStr+this.hand!!.Damage).toInt()
+        this.def=(this.cloth!!.def+this.pants!!.def).toInt()
     }
 }

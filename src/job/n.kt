@@ -18,8 +18,11 @@ class n(var n:String): Player
     override var MP=0
     override var FullHP=500
     override var FullMP=100
-    override var hand: Weapon? = Empty
+    override var hand: Weapon? = EmptyWeapon
     override var Damage=0
+    override var cloth: Cloth?= EmptyCloth
+    override var pants: Pants?= EmptyPants
+    override var def =0
     override var LV=1
     override var bag:LinkedList<Item> = LinkedList()
     override var map: MAP?= MAP_1()

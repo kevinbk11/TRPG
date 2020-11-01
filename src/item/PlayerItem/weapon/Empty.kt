@@ -1,8 +1,8 @@
-package item.weapon
+package item.PlayerItem.weapon
 
 import item.Weapon
 
-class Empty : Weapon(0,0)
+class EmptyWeapon : Weapon(0,0)
 {
     override var Name="none"
     override var Type="none"

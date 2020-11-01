@@ -1,4 +1,4 @@
-package item.weapon
+package item.PlayerItem.weapon.Fighter
 
 import item.Weapon
 

@@ -10,6 +10,7 @@ import java.util.*
 
 val input= Scanner(System.`in`)
 var Map=m
+
 fun main(args: Array<String>)
 {
 
@@ -37,7 +38,6 @@ fun main(args: Array<String>)
         2 -> {
             val i = ObjectInputStream(FileInputStream("data.txt"))
             People = i.readObject() as Player
-            print(People.QuestList[0].Name)
             game(People)
         }
     }

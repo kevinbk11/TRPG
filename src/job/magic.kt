@@ -2,6 +2,7 @@ package job
 
 import item.Item
 import item.*
+import item.*
 import map.MAP
 import map.MAP_1
 import player.Player
@@ -21,14 +22,16 @@ class magic(var n:String): Player
     override var MP=300
     override var FullHP=200
     override var FullMP=300
-    override var hand: Weapon? = Empty
+    override var hand: Weapon? = EmptyWeapon
+    override var cloth:Cloth?= EmptyCloth
+    override var pants:Pants?= EmptyPants
+    override var def =0
     override var LV=1
     override var bag:LinkedList<Item> = LinkedList()
     override var map: MAP?= MAP_1()
     override var Money=0
     override var FullEXP: Double =150+(2.0).pow(0.35)
     override var EXP: Double =0.0
-    var INT:Int=0
     override var Damage=0
     override var MapNumber: Int=0
     override var SkillList= LinkedList<Skill>()

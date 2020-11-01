@@ -2,7 +2,6 @@ package player
 
 
 import item.*
-import item.weapon.*
 import job.*
 import java.io.*
 import map.MAP
@@ -33,11 +32,14 @@ interface Player:Serializable
     open var FullHP:Int
     open var FullMP:Int
     open var hand: Weapon?
+    open var cloth:Cloth?
+    open var pants:Pants?
     open var LV:Int
     open var bag:LinkedList<Item>
     open var map:MAP?
     open var MapNumber:Int
     open var Damage:Int
+    open var def:Int
     open var FullEXP:Double
     open var EXP:Double
     open var SkillList:LinkedList<Skill>
@@ -79,12 +81,38 @@ interface Player:Serializable
                 this.MP+=I.HealMP
                 I.Count-=1
             }
+            is Cloth->
+            {
+                this.put(this.cloth,1)
+                this.def-=this.cloth!!.def
+                this.cloth=I
+                this.def+=this.cloth!!.def
+                I.Count-=1
+            }
+            is Pants->
+            {
+                this.put(this.pants,1)
+                this.def-=this.pants!!.def
+                this.pants=I
+                this.def+=this.pants!!.def
+                I.Count-=1
+            }
         }
         Message(this,I)
     }
     open fun Info()
     {
-        println("Name=${name}\nHP=${HP}\nMP=${MP}\nLV=${LV}\nExp=${EXP.toInt()},還需要${(FullEXP-EXP).toInt()}\nmoney=${Money}\nhand=${hand!!.Name}\njob=${job}\nLV=${LV}\nDamage=${Damage}")
+        println("玩家名稱=${name}\n" +
+                "HP=${HP}\n" +
+                "MP=${MP}\n" +
+                "等級=${LV}\n" +
+                "經驗值=${EXP.toInt()},還需要${(FullEXP-EXP).toInt()}經驗\n" +
+                "艾幣=${Money}\n" +
+                "武器=${hand!!.Name}\n" +
+                "職業=${job}\n" +
+                "等級=${LV}\n" +
+                "傷害=${Damage}\n" +
+                "防禦力=${def}")
     }
     open fun UpdataQuest(M:Monster)
     {
