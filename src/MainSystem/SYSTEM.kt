@@ -5,7 +5,7 @@ import map.*
 import monster.*
 import player.Player
 import java.util.*
-
+import kotlin.random.Random
 
 
 val input= Scanner(System.`in`)
@@ -148,6 +148,10 @@ fun Fighting(P:Player,M: Monster?)
         {
             P.levelup()
         }
+        var r = Random.nextDouble(0.80000,1.20000)*M.Money
+        var x=r.toInt()
+        println("你獲得了${x}元")
+        P.Money+=x
         P.UpdataQuest(M)
     }
 

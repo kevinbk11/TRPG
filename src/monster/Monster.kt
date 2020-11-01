@@ -20,6 +20,7 @@ interface Monster:Serializable
     var Damage:Int
     var Exp:Int
     var HaveQuestItem:Boolean
+    var Money:Int
     fun info(){}
     fun drop(): Item?
     {
@@ -46,6 +47,7 @@ object EmptyMonster:Monster
     override var FullHP = 0
     override var Damage = 0
     override var LV = 0
+    override var Money=0
     override var HaveQuestItem=false
 }
 

@@ -16,6 +16,7 @@ object TurnTurnBird: Monster {
     override var FullHP = 90
     override var Damage = 9
     override var LV = 1
+    override var Money=7
     override var HaveQuestItem=false
     val I1 = TurnTurnBirdFeather
     val I2 = RedWater

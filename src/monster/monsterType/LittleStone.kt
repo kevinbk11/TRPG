@@ -15,6 +15,7 @@ object LittleStone : Monster
     override var FullHP=135
     override var Damage=12
     override var LV=2
+    override var Money=9
     override var HaveQuestItem=false
     val I1= BrokenStone
     val I2= BlueWater

@@ -52,8 +52,8 @@ class fighter(var n:String): Player
         FullHP+=180
         FullMP+=50
         LV+=1
+        EXP-=FullEXP
         FullEXP=150+(2.0).pow(LV*0.35)
-        EXP=0.0
         HP=FullHP
         MP=FullMP
         BasicStr=LV*2.5

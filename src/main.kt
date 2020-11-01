@@ -14,7 +14,7 @@ fun main(args: Array<String>)
 {
 
     Map.Load()
-    print(27.toChar()+"[31m"+"按1建檔 按2讀檔\n")
+    print("按1建檔 按2讀檔\n")
     var move:Int
     move=input.nextInt()
     var People:Player
@@ -54,6 +54,10 @@ fun game(P: Player)
         println("請輸入指令,L離開,D顯示玩家資料,I顯示物品欄,N前往下一張地圖,B回到上一張地圖\nK進入戰鬥,T查看該地圖npc,Q查看任務")
         println()
         println("目前所在地:${P.map!!.Name}")
+        while(P.EXP>=P.FullEXP)
+        {
+            P.levelup()
+        }
         command= MainSystem.input.next().toUpperCase()
         when(command)
         {

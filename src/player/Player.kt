@@ -84,7 +84,7 @@ interface Player:Serializable
     }
     open fun Info()
     {
-        println("Name=${name}\nHP=${HP}\nMP=${MP}\nmoney=${Money}\nhand=${hand!!.Name}\njob=${job}\nLV=${LV}\nDamage=${Damage}")
+        println("Name=${name}\nHP=${HP}\nMP=${MP}\nLV=${LV}\nExp=${EXP.toInt()},還需要${(FullEXP-EXP).toInt()}\nmoney=${Money}\nhand=${hand!!.Name}\njob=${job}\nLV=${LV}\nDamage=${Damage}")
     }
     open fun UpdataQuest(M:Monster)
     {
