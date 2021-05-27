@@ -12,9 +12,9 @@ import java.util.*
 
 fun setjob(num:Int,name:String):Player
 {
-    var m= magic(name)
-    var f= fighter(name)
-    var N= n(name)
+    var m= Magic(name)
+    var f= Fighter(name)
+    var N= NoneJob(name)
     when(num)
     {
         1->return f
@@ -126,12 +126,12 @@ interface Player:Serializable
         for (y in bag) {
             if (y!!.Count == 0) {
                 bag.remove(y)
-                bag.add(Empty)
+                bag.add(empty)
                 break
             }
         }
         for (x in bag) {
-            if (x!!.Name != Empty.Name) {
+            if (x!!.Name != empty.Name) {
                 println("${w}.${x!!.Name} x${x.Count}")
                 w++
             }
@@ -154,7 +154,7 @@ interface Player:Serializable
         {
             for(x in 0..20)
             {
-                if(this.bag[x]!!.Name== Empty.Name)
+                if(this.bag[x]!!.Name== empty.Name)
                 {
                     item!!.Count=value
                     this.bag[x]=item

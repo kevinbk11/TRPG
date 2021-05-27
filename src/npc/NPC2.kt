@@ -9,7 +9,7 @@ import quest.Quest3
 
 import java.util.*
 
-class NPC2:Npc()
+object NPC2:Npc()
 {
     override var Name:String="小村民"
     override var HaveAnthorChoice=true

@@ -1,7 +1,7 @@
 package monster.monsterType
 
 import item.*
-import item.Consume.RedWater
+import item.HealItem.RedWater
 import item.normalItem.*
 import monster.Monster
 import monster.monsterSkills.*
@@ -18,9 +18,9 @@ object TurnTurnBird: Monster {
     override var LV = 1
     override var Money=7
     override var HaveQuestItem=false
-    val I1 = TurnTurnBirdFeather
-    val I2 = RedWater
-    val I3=QuestItem1()
+    val I1 = TurnTurnBirdFeather()
+    val I2 = RedWater()
+    val I3=QuestItem1
     override fun drop(): Item? {
         val rd = Random.nextInt(0, 100)
         when (rd) {

@@ -2,7 +2,7 @@ package item.normalItem
 
 import item.NormalItem
 
-class QuestItem1: NormalItem()
+object QuestItem1: NormalItem()
 {
     override var Count: Int=0
     override var Name: String="錢包"

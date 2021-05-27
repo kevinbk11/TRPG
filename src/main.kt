@@ -1,5 +1,10 @@
 import MainSystem.*
 import item.*
+import item.HealItem.BlueWater
+import item.HealItem.RedWater
+import item.PlayerItem.weapon.Fighter.AdminFist
+import item.PlayerItem.weapon.Fighter.ShortSword
+import item.normalItem.TurnTurnBirdFeather
 import map.m
 import player.Player
 import player.setjob
@@ -28,16 +33,23 @@ fun main(args: Array<String>)
             println("輸入名稱")
             var name = input.next()
             People = setjob(jobnum, name)
-            People.put(RedWater, 1)
+            People.put(RedWater(), 1)
             People.put(ShortSword, 1)
-            People.put(BlueWater, 1)
-            People.put(TurnTurnBirdFeather, 1)
-            People.put(RedWater, 1)
+            People.put(BlueWater(), 1)
+            People.put(TurnTurnBirdFeather(), 1)
+            People.put(RedWater(), 1)
             game(People)
         }
         2 -> {
             val i = ObjectInputStream(FileInputStream("data.txt"))
             People = i.readObject() as Player
+            for (y in People.bag) {
+                if (y!!.Count == 0) {
+                    People.bag.remove(y)
+                    People.bag.add(empty)
+                    break
+                }
+            }
             game(People)
         }
     }

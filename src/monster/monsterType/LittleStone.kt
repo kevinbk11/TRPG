@@ -1,6 +1,7 @@
 package monster.monsterType
 
 import item.*
+import item.HealItem.BlueWater
 import item.normalItem.*
 import monster.Monster
 import monster.monsterSkills.*
@@ -17,8 +18,8 @@ object LittleStone : Monster
     override var LV=2
     override var Money=9
     override var HaveQuestItem=false
-    val I1= BrokenStone
-    val I2= BlueWater
+    val I1= BrokenStone()
+    val I2= BlueWater()
 
     override fun drop(): Item?
     {

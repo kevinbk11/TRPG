@@ -9,7 +9,7 @@ import npc.*
 import java.util.*
 
 
-open class Npc:Serializable
+abstract class Npc:Serializable
 {
     open var Name:String=""//NPC名稱
     open var NPCQuest:LinkedList<Quest> =LinkedList()

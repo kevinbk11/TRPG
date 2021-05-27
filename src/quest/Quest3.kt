@@ -1,8 +1,10 @@
 package quest
 
-import item.BlueWater
-import item.QuestItem1
-import item.RedWater
+
+
+import item.HealItem.BlueWater
+import item.HealItem.RedWater
+import item.normalItem.QuestItem1
 import monster.monsterType.TurnTurnBird
 
 class Quest3:Quest()
@@ -15,8 +17,8 @@ class Quest3:Quest()
     {
         NeedItemList.add(QuestItem1)
         NeedItemCount.add(1)
-        this.ItemPrize.add(RedWater)
-        this.ItemPrize.add(BlueWater)
+        this.ItemPrize.add(RedWater())
+        this.ItemPrize.add(BlueWater())
         this.ItemPrizeCount.add(3)
         this.ItemPrizeCount.add(3)
     }

@@ -7,11 +7,11 @@ import java.io.Serializable
 import java.util.*
 import kotlin.collections.ArrayList
 
-interface MAP:Serializable
+abstract class MAP:Serializable
 {
-    var Name:String
-    var MonsterType:LinkedList<Monster?>
-    var Npc:LinkedList<Npc?>
+    open var Name=""
+    open var MonsterType=LinkedList<Monster>()
+    open var Npc=LinkedList<Npc?>()
 }
 
 
@@ -20,8 +20,8 @@ object m
     var MapSet=ArrayList<MAP?>(100)
     fun Load()
     {
-        MapSet.add(MAP_1())
-        MapSet.add(MAP_2())
+        MapSet.add(MAP_1)
+        MapSet.add(MAP_2)
     }
 }
 /*

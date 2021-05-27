@@ -1,7 +1,7 @@
 package quest
 
-import item.BrokenStone
 import item.Item
+import item.normalItem.BrokenStone
 import monster.Monster
 import monster.monsterType.LittleStone
 import player.Player
@@ -16,7 +16,7 @@ class Quest2:Quest()
     init {
         NeedMonsterList.add(LittleStone)
         NeedMonsterCount.add(3)
-        NeedItemList.add(BrokenStone)
+        NeedItemList.add(BrokenStone())
         NeedItemCount.add(3)
     }
 }

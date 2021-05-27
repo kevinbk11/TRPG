@@ -8,7 +8,7 @@ import quest.Quest2
 
 import java.util.*
 
-class NPC1:Npc()
+object NPC1:Npc()
 {
     override var Name:String="村長"
     override var HaveAnthorChoice=true

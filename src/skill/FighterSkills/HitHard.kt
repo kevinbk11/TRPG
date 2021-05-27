@@ -1,18 +1,18 @@
 package skill.FighterSkills
 
-import job.fighter
+import job.Fighter
 import monster.Monster
 import skill.Skill
 import kotlin.random.Random
 
-class HitHard: Skill
+object HitHard: Skill()
 {
     override var name:String="沉重打擊"
     override fun <T>use(M: Monster?, P:T)
     {
         when(P)
         {
-            is fighter ->
+            is Fighter ->
             {
                 if(P.MP<20)
                 {
